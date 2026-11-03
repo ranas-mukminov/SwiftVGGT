@@ -113,7 +113,7 @@ class SwiftVGGT:
     def load_model(self, ckpt='./ckpt/model_tracker_fixed_e20.pt'):
         print(f"🔄 Loading model: '{ckpt}'")
         model = VGGT(merging=0, vis_attn_map=False)
-        ckpt = torch.load(ckpt, map_location="cpu")
+        ckpt = torch.load(ckpt, map_location="cpu", weights_only=True)
         model.load_state_dict(ckpt, strict=False)
         model = model.cuda().eval()
         self.model = model.to(self.dtype)
